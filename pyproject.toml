@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "impressum-check"
+version = "0.1.0"
+description = "Prüft, ob eine deutsche Website die Pflichtangaben nach § 5 DDG und Art. 13 DSGVO enthält. Keine Rechtsberatung."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kai Pfister" }]
+keywords = ["impressum", "ddg", "dsgvo", "gdpr", "compliance", "ci"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: German",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+impressum-check = "impressumcheck.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/Wasserpuncher/impressum-check"
+
+[tool.setuptools]
+packages = ["impressumcheck"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

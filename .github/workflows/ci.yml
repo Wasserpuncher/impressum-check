@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: python -m pytest -q
+
+  # Das Werkzeug auf sich selbst: das Beispiel im Repo IST kaputt (Postfach,
+  # GmbH ohne Register, fehlender Verantwortlicher). Es muss Exit 1 liefern.
+  # Täte es das nicht, wäre der Prüfer defekt und niemand würde es merken.
+  selbsttest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Das kaputte Beispiel muss durchfallen
+        run: |
+          if impressum-check beispiel; then
+            echo "FEHLER: das kaputte Beispiel hat die Prüfung bestanden."
+            exit 1
+          fi
+          echo "OK: Exit 1 wie erwartet."
+      - name: Die korrekte Fixture-Seite muss bestehen
+        run: impressum-check tests/fixtures/seite-korrekt
+
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]" readme-check
+      - run: readme-check
