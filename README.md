@@ -1,5 +1,19 @@
 # impressum-check
 
+> **In English:** German law (§ 5 DDG, Art. 13 GDPR) requires every commercial
+> website to carry an *Impressum* — a legally binding disclosure of who runs it.
+> This tool checks a `dist/` folder, a file or a URL for those mandatory fields
+> and fails your CI build if one is missing. Every rule cites the statute it
+> comes from.
+>
+> **The rest of this README is in German, deliberately.** The tool's output *is*
+> legal text: it quotes German statutes and German case law, and the only people
+> who can use it are people who already deal with those statutes in German. An
+> English error message pointing at a German paragraph would be worse, not
+> better. The author's other tools ([readme-check](https://github.com/Wasserpuncher/readme-check),
+> [changelog-check](https://github.com/Wasserpuncher/changelog-check)) are in
+> English, because they apply everywhere. This one does not.
+
 **Prüft, ob die Pflichtangaben DA sind. Nicht, ob sie STIMMEN.**
 
 Das ist keine Nebenbemerkung, das ist die Bedienungsanleitung. Eine erfundene
