@@ -183,7 +183,7 @@ Zeilen Python, und diese Zahl wird von dem Code geprüft, den sie zählt.
 
 <!-- readme-check: skip=would-install -->
 ```console
-$ pip install impressum-check
+$ pip install git+https://github.com/Wasserpuncher/impressum-check
 ```
 
 Python 3.10+, **keine Abhängigkeiten**. Das HTML-Parsing macht `html.parser` aus
